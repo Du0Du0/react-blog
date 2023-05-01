@@ -15,6 +15,7 @@ function App() {
   let post = '리액트 스터디';
   let [listTitle,setlistTitle] = useState(['라액트는 왜 쓸까?','다sx는 무엇일까?', '나tate는 언제쓸까?']);
   let [likeBtn, setlikeBtn] = useState(0);
+  let [modal,setModal] = useState(false);
 
 
   return (
@@ -38,7 +39,7 @@ function App() {
 
     {/* 좋아요 버튼을 누르면 1씩 증가하는 기능 */}
       <div className="list">
-     <h4>{listTitle[0]}<span onClick={() => {setlikeBtn(likeBtn+1)}}>👍</span>{likeBtn}</h4>
+     <h4 onClick={()=> {setModal(!modal)}}>{listTitle[0]}<span onClick={() => {setlikeBtn(likeBtn+1)}}>👍</span>{likeBtn}</h4>
      <p>2023-05-01</p>
       </div>
       <div className="list">
@@ -50,7 +51,9 @@ function App() {
      <p>2023-05-01</p>
       </div>
 
-    <Modal></Modal>
+    {
+      modal == true ? <Modal/> : null
+    }
     
     </div>
   );
