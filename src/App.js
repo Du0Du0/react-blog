@@ -1,8 +1,17 @@
 import './App.css';
 import {useState} from 'react';
 
-function App() {
+function Modal() {
+  return (
+    <div className='modal'>
+      <h4>제목</h4>
+      <p>날짜</p>
+      <p>상세내용</p>
+    </div>
+  )
+}
 
+function App() {
   let post = '리액트 스터디';
   let [listTitle,setlistTitle] = useState(['라액트는 왜 쓸까?','다sx는 무엇일까?', '나tate는 언제쓸까?']);
   let [likeBtn, setlikeBtn] = useState(0);
@@ -25,7 +34,7 @@ function App() {
     <button onClick={() => {
       let arr = [...listTitle].sort();
       setlistTitle(arr);
-    }}>가나다순정렬</button>
+    }}>정렬버튼</button>
 
     {/* 좋아요 버튼을 누르면 1씩 증가하는 기능 */}
       <div className="list">
@@ -40,6 +49,9 @@ function App() {
      <h4>{listTitle[2]}</h4>
      <p>2023-05-01</p>
       </div>
+
+    <Modal></Modal>
+    
     </div>
   );
 }
