@@ -14,7 +14,7 @@ function Modal(props) {
 
 function App() {
   let post = '리액트 스터디';
-  let [listTitle,setlistTitle] = useState(['리액트는 왜 쓸까?','jsx는 무엇일까?', 'state는 언제쓸까?']);
+  let [listTitle,setlistTitle] = useState(['ㄷ액트는 왜 쓸까?','ㄴsx는 무엇일까?', 'ㄱtate는 언제쓸까?']);
   let [likeBtn, setlikeBtn] = useState([0,0,0]);
   let [modal,setModal] = useState(false);
   let [title, setTitle] = useState(0);
@@ -38,12 +38,22 @@ function App() {
 </div>
 
       <div className='array-select-btn'>
+
       {/* 오름차순으로 정렬하는 버튼 */}
       <div onClick={() => {
-        let ascArr = [...listTitle].sort();
-        setlistTitle(ascArr);
-      }} ><p>오름차순</p></div>
+       const data = listTitle.map((a, i) => {
+          return {'listTitle' : listTitle[i], 'likeBtn': likeBtn[i] }
+        });
       
+        let ascArr = data.sort((a,b)=> a.listTitle.localeCompare(b.listTitle));
+        let sortedTitle =  ascArr.map(item => item.listTitle);
+        let sortedLike =  ascArr.map(item => item.likeBtn);
+        setlistTitle(sortedTitle);
+        setlikeBtn(sortedLike);
+      }}>
+      <p>오름차순</p></div>
+      
+      {/* TODO. 내림차순 좋아요랑 동기화해야됨 */}
       {/* 내림차순으로 정렬하는 버튼 */}
       <div onClick={()=> {
         let descArr = [...listTitle].reverse();
@@ -56,7 +66,7 @@ function App() {
       const data = listTitle.map((a , i) => {
         return { 'listTitle':  listTitle[i], 'likeBtn': likeBtn[i] };
       });
-      
+
         let likeArr = data.sort((a,b)=> b.likeBtn- a.likeBtn);
         let sortedTitle =  likeArr.map(item => item.listTitle);
         let sortedLike =  likeArr.map(item => item.likeBtn);
