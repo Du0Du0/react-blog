@@ -18,6 +18,7 @@ function App() {
   let [likeBtn, setlikeBtn] = useState([0,0,0]);
   let [modal,setModal] = useState(false);
   let [title, setTitle] = useState(0);
+  let [value,setValue] = useState('');
 
   return (
     <div className="App">
@@ -25,26 +26,58 @@ function App() {
       <h4 style={ {color : '#e9e9e9', fontSize : '16px'} }>Du0Du0 developer blog</h4>
       </div>
 
+    <div className='show-list'>글 목록
+    <p className='show-list-sub'>블로그 기록하는 곳입니다.</p></div>
 
+    <div className='btn-container'>
+    <button className="write-Btn">🖌 작성하기</button>&nbsp;&nbsp;&nbsp;
+   
+    {/* 정렬종류 select 버튼 */}
+    <button className="arr-Btn"onClick={() => {}}
+   >📌 정렬하기</button>
+</div>
 
-    {/* 글목록 제목 바꾸는 버튼 */}
-    <button onClick={() => {
-      let copy = [...listTitle];
-      copy[0] = '자바스크립트는 왜 쓸까?';
-      setlistTitle(copy);
-    }}>글수정</button>
+      <div className='array-select-btn'>
+      {/* 오름차순으로 정렬하는 버튼 */}
+      <div onClick={() => {
+        let ascArr = [...listTitle].sort();
+        setlistTitle(ascArr);
+      }} ><p>오름차순</p></div>
+      
+      {/* 내림차순으로 정렬하는 버튼 */}
+      <div onClick={()=> {
+        let descArr = [...listTitle].reverse();
+        setlistTitle(descArr);
+      }}><p>내림차순</p></div>
 
-    {/* 글목록 오름차순으로 정렬하는 버튼 */}
-    <button onClick={() => {
-      let arr = [...listTitle].sort();
-      setlistTitle(arr);
-    }}>정렬버튼</button>
+      {/* 좋아요순으로 정렬하는 버튼 */}
+      <div onClick={()=> {
+      
+        let data = [
+          {'listTitle' : listTitle[0], 'likeBtn' : likeBtn[0] },
+          {'listTitle' : listTitle[1], 'likeBtn' : likeBtn [1] },
+          {'listTitle' : listTitle[2], 'likeBtn' : likeBtn [2] }
+        ];
+
+        let likeArr = data.sort((a,b)=> b.likeBtn- a.likeBtn);
+        let sortedTitle =  likeArr.map(item => item.listTitle);
+        let sortedLike =  likeArr.map(item => item.likeBtn);
+
+       setlistTitle(sortedTitle);
+       setlikeBtn(sortedLike);
+      }}
+      ><p>추천순</p></div>
+      <div><p>댓글순</p></div>
+      <div><p>조회순</p></div>
+      </div>
 
 {
       listTitle.map((a, i)=>{
         return(
           <div className="list">
-     <h4 onClick={()=> {setModal(!modal); setTitle(i);}}>{listTitle[i]}<span onClick={() => {
+     <h4 onClick={()=> {setModal(!modal); setTitle(i);}}>{listTitle[i]}
+     <span onClick={(e) => {
+      e.stopPropagation();
       let likeBtnArr = [...likeBtn];
       likeBtnArr[i] = likeBtnArr[i]+1;
       setlikeBtn(likeBtnArr);
@@ -54,6 +87,10 @@ function App() {
         )
       })
     }
+
+    <input onChange={(e)=> setValue(e.target.value)
+    }/>
+
 
     {
       modal == true ? <Modal listTitle={listTitle} title={title}/> : null

@@ -1,9 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400&display=swap');
+
+* {
+  --border: 1px soild rgb(188, 188, 188);
+  --color: #333333;
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+
 .App {
-  text-align: center;
+ 
 }
 
 .nav {
-  background-color: black;
+  background-color: rgb(6, 40, 51);
   color: white;
   padding-left: 20px;
   display: flex;
@@ -14,9 +23,20 @@
 }
 
 .list{
+  
   padding-left: 20px;
   text-align: left;
-  border-bottom: 1px solid #333333;
+  border-bottom: 1px solid rgb(188, 188, 188);
+  margin-left: 21%;
+  margin-right: 21%;
+  
+}
+
+@media (max-width: 768px) {
+  .list {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 }
 
 .modal {
@@ -26,38 +46,85 @@
   text-align: left;
 }
 
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.btn-container{
+ display: flex;
+ text-align: center;
+ justify-content: center;
+ font-size: 14px;
+ margin-bottom: 50px;
+}
+.arr-Btn{
+  padding: 8px;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(188, 188, 188);
+  color: var(--color);
+  font-weight: 600;
+  border-radius: 5px;
+  margin-top: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.array-select-btn {
+  position: absolute;
+  border: 1px solid  rgb(188, 188, 188);
+  width: 152px;
+  height: 207px;
+  background-color: white;
+  box-shadow: 5px 5px 20px rgb(220, 220, 220);
+  margin-top: -36px;
+  margin-left: 50%;
+  border-radius: 5px;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.array-select-btn p {
+  border-bottom: 1px solid  rgb(188, 188, 188);
+  padding-left: 20px;
+  padding-bottom: 10px;
+  font-size: 14px;
+  display: flex;
+  font-weight: 600;
+  color: var(--color)
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.array-select-btn p:hover {
+  color: rgb(0, 192, 154);
+}
+
+.write-Btn {
+  padding: 8px;
+  background-color: rgb(6, 86, 102);
+  border: 1px solid rgb(188, 188, 188);
+  color: rgb(255, 255, 255);
+  font-weight: 590;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.show-list{
+  background-image: url(../img/bg17.jfif);
+  object-fit: scale-down;
+  background-size: 850px 150px;
+  vertical-align: middle;
+  text-align: left;
+  margin: 20px auto;
+  width: 755.43px;
+  height: 100px;
+  font-size: 20px;
+  font-weight: 510;
+  color: rgb(212, 212, 212);
+  background-color: bisque;
+  border-radius: 10px;
+  padding: 40px 25px 8px 30px;
+}
+
+@media (max-width: 480px) {
+  .show-list {
+    font-size: 16px;
   }
-  to {
-    transform: rotate(360deg);
-  }
+}
+
+.show-list-sub{
+  font-size: 14px;
+  font-weight: 100;
+  color: #bbbbbb;
 }
