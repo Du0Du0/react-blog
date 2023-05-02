@@ -53,12 +53,10 @@ function App() {
       {/* 좋아요순으로 정렬하는 버튼 */}
       <div onClick={()=> {
       
-        let data = [
-          {'listTitle' : listTitle[0], 'likeBtn' : likeBtn[0] },
-          {'listTitle' : listTitle[1], 'likeBtn' : likeBtn [1] },
-          {'listTitle' : listTitle[2], 'likeBtn' : likeBtn [2] }
-        ];
-
+      const data = listTitle.map((a , i) => {
+        return { 'listTitle':  listTitle[i], 'likeBtn': likeBtn[i] };
+      });
+      
         let likeArr = data.sort((a,b)=> b.likeBtn- a.likeBtn);
         let sortedTitle =  likeArr.map(item => item.listTitle);
         let sortedLike =  likeArr.map(item => item.likeBtn);
