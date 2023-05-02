@@ -1,12 +1,13 @@
 import './App.css';
 import {useState} from 'react';
 
-function Modal() {
+function Modal(props) {
   return (
     <div className='modal'>
-      <h4>제목</h4>
+      <h4>{props.listTitle[props.title]}</h4>
       <p>날짜</p>
       <p>상세내용</p>
+      <button>글수정</button>
     </div>
   )
 }
@@ -16,7 +17,7 @@ function App() {
   let [listTitle,setlistTitle] = useState(['리액트는 왜 쓸까?','jsx는 무엇일까?', 'state는 언제쓸까?']);
   let [likeBtn, setlikeBtn] = useState([0,0,0]);
   let [modal,setModal] = useState(false);
-
+  let [title, setTitle] = useState(0);
 
   return (
     <div className="App">
@@ -39,25 +40,11 @@ function App() {
       setlistTitle(arr);
     }}>정렬버튼</button>
 
-    {/* 좋아요 버튼을 누르면 1씩 증가하는 기능
-      <div className="list">
-     <h4 onClick={()=> {setModal(!modal)}}>{listTitle[0]}<span onClick={() => {setlikeBtn(likeBtn+1)}}>👍</span>{likeBtn}</h4>
-     <p>2023-05-01</p>
-      </div>
-      <div className="list">
-     <h4>{listTitle[1]}</h4>
-     <p>2023-05-01</p>
-      </div>
-      <div className="list">
-     <h4>{listTitle[2]}</h4>
-     <p>2023-05-01</p>
-      </div> */}
-
 {
       listTitle.map((a, i)=>{
         return(
           <div className="list">
-     <h4 onClick={()=> {setModal(!modal)}}>{listTitle[i]}<span onClick={() => {
+     <h4 onClick={()=> {setModal(!modal); setTitle(i);}}>{listTitle[i]}<span onClick={() => {
       let likeBtnArr = [...likeBtn];
       likeBtnArr[i] = likeBtnArr[i]+1;
       setlikeBtn(likeBtnArr);
@@ -69,7 +56,7 @@ function App() {
     }
 
     {
-      modal == true ? <Modal/> : null
+      modal == true ? <Modal listTitle={listTitle} title={title}/> : null
     }
     </div>
   );
