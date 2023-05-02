@@ -53,11 +53,18 @@ function App() {
       }}>
       <p>오름차순</p></div>
       
-      {/* TODO. 내림차순 좋아요랑 동기화해야됨 */}
+      
       {/* 내림차순으로 정렬하는 버튼 */}
       <div onClick={()=> {
-        let descArr = [...listTitle].reverse();
-        setlistTitle(descArr);
+      const data = listTitle.map((a, i) => {
+        return {'listTitle' : listTitle[i], 'likeBtn': likeBtn[i] }
+      });
+
+      let descArr = data.sort((a,b)=> a.listTitle.localeCompare(b.listTitle)).reverse();
+      let sortedTitle =  descArr.map(item => item.listTitle);
+      let sortedLike =  descArr.map(item => item.likeBtn);
+      setlistTitle(sortedTitle);
+      setlikeBtn(sortedLike);
       }}><p>내림차순</p></div>
 
       {/* 좋아요순으로 정렬하는 버튼 */}
