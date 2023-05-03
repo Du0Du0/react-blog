@@ -105,6 +105,7 @@ select {
 color: var(--font-color);
 font-size: 14px;
 text-align: left;
+margin-bottom: 10px;
 }
 
 .write-selectTitle-input{
@@ -135,10 +136,8 @@ text-align: left;
     margin-top: 50px;
 }
 
-.write-textArea-container textarea{
-    width: 800px;
-    height: 300px;
-}
+.ck-editor__editable { height: 300px; border-radius: 10px; }
+.ck-content { width: 780px; border-radius : 10px; border-radius: 10px }
 
 .write-submit-container{
     display: flex;
