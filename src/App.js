@@ -1,6 +1,6 @@
 import './App.css'
 import {useState} from 'react';
-import {Routes, Route, Link, Navigate, useNavigate} from 'react-router-dom'
+import {Routes, Route, Link, useNavigate} from 'react-router-dom'
 import HorizonLine from './HorizontalLine.js'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faRotate } from "@fortawesome/free-solid-svg-icons"
