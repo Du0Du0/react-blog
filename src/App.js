@@ -1,13 +1,14 @@
-import './App.css';
+import './App.css'
 import {useState} from 'react';
-import {Routes, Route, Link} from 'react-router-dom'
-import HorizonLine from './HorizontalLine.js';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRotate } from "@fortawesome/free-solid-svg-icons";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import {faBookmark} from "@fortawesome/free-solid-svg-icons";
-import {faToggleOff} from "@fortawesome/free-solid-svg-icons";
-import {faBell} from "@fortawesome/free-solid-svg-icons";
+import {Routes, Route, Link, Navigate, useNavigate} from 'react-router-dom'
+import HorizonLine from './HorizontalLine.js'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faRotate } from "@fortawesome/free-solid-svg-icons"
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
+import {faBookmark} from "@fortawesome/free-solid-svg-icons"
+import {faToggleOff} from "@fortawesome/free-solid-svg-icons"
+import {faBell} from "@fortawesome/free-solid-svg-icons"
+import Write from './routes/write.js'
 
 
 function Modal(props) {
@@ -88,52 +89,52 @@ function App() {
   let [title, setTitle] = useState(0);
   let [value,setValue] = useState('');
   let [arrBtn, setArrBtn] = useState(false);
+  let Navigate = useNavigate();
 
   return (
     <div className="App">
     <div className="nav">
-      <h4 style={ {color : '#e9e9e9', fontSize : '16px', paddingLeft: '20px'} }>Du0Du0 developer blog</h4>
+      <h4 Link to="/" style={ {color : '#e9e9e9', fontSize : '16px', paddingLeft: '20px'} }>Du0Du0 developer blog</h4>
 
+    {/* 네비게이션 카테고리 */}
       <ul className='nav-menu'>
     <div><li Link to= "#">프론트엔드</li></div>
     <div><li >백엔드</li></div>
     <div><li>CS</li></div>
-    <div> <li>플레이라운드</li></div>
-    <div> <li>공지</li></div>
+    <div><li>플레이라운드</li></div>
+    <div><li>공지</li></div>
     </ul>
 
-      <div className='nav-notice-container'>
-      <div ><FontAwesomeIcon icon={faBookmark} className='nav-bookmark' /> </div>
-      <div><FontAwesomeIcon icon={faBell}  className='nav-darkMode'/></div>
+    {/* 네비게이션 북마크, 다크모드, 알림버튼 */}
+    <div className='nav-notice-container'>
+    <div ><FontAwesomeIcon icon={faBookmark} className='nav-bookmark' onClick={ () => { Navigate('/write') }} /> </div>
+    <div><FontAwesomeIcon icon={faBell}  className='nav-darkMode'/></div>
 <div ><FontAwesomeIcon icon={faToggleOff} className='nav-notice'/></div>
 </div>
       </div>
 
-      {/* <Routes>
-      <Route path="/" element={<div>글목록</div>}/>
-      <Route path="/write" element={<div>작성하기</div>}/>
-      <Route path="/detail" element={<div>상세페이지</div>}/>
-      <Route/>
-      <Route/>
-    </Routes> */}
-
-    <div className='show-list'>프론트엔드
+      {/* 대문 */}
+      <div className='show-list'>프론트엔드
     <p className='show-list-sub'>프론트엔드 관련 프로그래밍</p></div>
 
+
+
+
+      <Routes>
+      <Route path="/" element={
+        <>
+ 
+
     <div className='category-container'>
-    <button className="write-Btn">🖌 작성하기</button>
+    <button className="write-Btn" onClick={ () => { Navigate('/write') }}>🖌 작성하기</button>
    
    <div className='category-list'>
     <Link to="/" className='link-page'>전체</Link>
-
-      <Link to="/" className='link-page' >Css</Link>
-     
-
-      <Link to="/" className='link-page' >Javascript</Link>
-      
-      <Link to="/" className='link-page' > React</Link>
-      <Link to="/" className='link-page' >Vue</Link>
-      </div>
+    <Link to="/" className='link-page' >Css</Link>
+    <Link to="/" className='link-page' >Javascript</Link>
+    <Link to="/" className='link-page' > React</Link>
+    <Link to="/" className='link-page' >Vue</Link>
+    </div>
 
    {/*  버튼을 누르면 select버튼 나타났다 사라짐*/}
     <button className="arr-Btn"onClick={() => {setArrBtn(!arrBtn);}}
@@ -177,6 +178,15 @@ function App() {
     {
       modal == true ? <Modal listTitle={listTitle} title={title}/> : null
     }
+    </>
+      }/>
+      <Route path="/write" element={<Write/>}/>
+      <Route path="/detail" element={<div>상세페이지</div>}/>
+      <Route/>
+      <Route/>
+    </Routes>
+
+   
     </div>
   );
 }

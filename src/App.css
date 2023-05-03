@@ -149,10 +149,13 @@
 .nav-notice-container{
   display: flex;
   float: right;
+  justify-content: flex-start;
   flex-wrap: nowrap;
   flex-direction: row;
   margin-top: 25px;
   margin-left: 280px;
+  margin-right: 20px;
+  
 }
 
 @media (max-width: 768px) {
@@ -176,8 +179,8 @@
   text-align: left;
   border-bottom: 1px solid;
   border-color: var(--border-color);
-  margin-left: 13%;
-  margin-right: 13%;
+  width: 800px;
+  margin: auto;
 }
 
 @media (max-width: 768px) {
@@ -198,7 +201,7 @@
 .category-container{
  display: flex;
  flex-wrap: wrap;
- gap: 12%;
+ gap: 130px;
  flex-direction: row;
  text-align: center;
  justify-content: center;
@@ -219,6 +222,7 @@
   color: rgb(255, 255, 255);
   font-weight: 590;
   padding: 8px;
+  cursor: pointer;
   line-height: 20px;
   height: 40px;
   border-radius: 5px;
@@ -273,6 +277,7 @@
 /* 정렬하기 선택 버튼 */
 .arr-Btn{
   padding: 8px;
+  cursor: pointer;
   line-height: 20px;
   height: 40px;
   background-color: rgb(255, 255, 255);
@@ -354,6 +359,7 @@
   display: flex;
   color: var(--main-color);
   width: 20px;
+  cursor: pointer;
   height: 20px;
   padding: 5px;
 }
@@ -387,7 +393,7 @@ display: flex;
   padding: 8px 8px 8px;
   font-size: 16px;
   color: var(--main-color);
-  margin: 0 4%;
+  margin-left: 45px;
 }
 
 @media (max-width: 768px) {
