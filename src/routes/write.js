@@ -13,7 +13,7 @@ function Write (props) {
     const [tags, setTags] = useState([]);
     let [value,setValue] = useState('');
 
-  
+//   제출버튼 누를 시 글목록에 입력한 제목이 뜸
     const handleClick = () => {
       let copy = [...listTitle];
       copy.unshift(value);
