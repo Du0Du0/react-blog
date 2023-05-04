@@ -9,22 +9,24 @@ import {faBookmark} from "@fortawesome/free-solid-svg-icons"
 import {faToggleOff} from "@fortawesome/free-solid-svg-icons"
 import {faBell} from "@fortawesome/free-solid-svg-icons"
 import Write from './routes/write.js'
+import Detail from './routes/detail.js'
 
-
-function Modal(props) {
-  return (
-    <div className='modal'>
-      <h4>{props.listTitle[props.title]}</h4>
-      <p>날짜</p>
-      <p>상세내용</p>
-      <button>글수정</button>
-    </div>
-  )
-}
+// function Modal(props) {
+//   return (
+//     <div className='modal'>
+//       <h4>{props.listTitle[props.title]}</h4>
+//       <p>날짜</p>
+//       <p>상세내용</p>
+//       <button>글수정</button>
+//     </div>
+//   )
+// }
 
 
 function ArrayBtn(props) {
   const {listTitle, likeBtn, setlistTitle, setlikeBtn} = props;
+
+
   return (
     <>
       {/* 정렬종류 select 버튼 */}
@@ -85,7 +87,7 @@ function App() {
   let post = '리액트 스터디';
   let [listTitle,setlistTitle] = useState(['ㄷ액트는 왜 쓸까?','ㄴsx는 무엇일까?', 'ㄱtate는 언제쓸까?']);
   let [likeBtn, setlikeBtn] = useState([0,0,0]);
-  let [modal,setModal] = useState(false);
+  
   let [title, setTitle] = useState(0);
   let [value,setValue] = useState('');
   let [arrBtn, setArrBtn] = useState(false);
@@ -158,7 +160,7 @@ function App() {
       listTitle.map((a, i)=>{
         return(
           <div className="list">
-     <h4 onClick={()=> {setModal(!modal); setTitle(i);}}>{listTitle[i]}
+     <h4 onClick={()=> { Navigate('/detail'); setTitle(i);}}>{listTitle[i]}
      <span onClick={(e) => {
       e.stopPropagation();
       let likeBtnArr = [...likeBtn];
@@ -175,13 +177,21 @@ function App() {
     }/>
 
 
-    {
+    {/* {
       modal == true ? <Modal listTitle={listTitle} title={title}/> : null
-    }
+    } */}
     </>
       }/>
       <Route path="/write" element={<Write/>}/>
-      <Route path="/detail" element={<div>상세페이지</div>}/>
+      <Route path="/detail" element={ <Detail
+              listTitle={listTitle}
+              likeBtn={likeBtn}
+              setlistTitle={setlistTitle}
+              setlikeBtn={setlikeBtn}
+              title = {title} />
+              }
+            
+          />
       <Route/>
       <Route/>
     </Routes>
