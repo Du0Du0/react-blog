@@ -145,6 +145,7 @@ margin-bottom: 10px;
 }
 
 .write-tag-box {
+    border-radius: 5px;
     border: 1px solid var(--border-color);
     width: 800px;
     gap: 6px;
@@ -166,10 +167,11 @@ margin-bottom: 10px;
 
 .tags-input {
 flex-grow: 1;
-padding: 2px;
+padding: 6px;
 border: none;
 outline: none;
 width: 100%;
+font-size: 16px;
 }
 
 .close{

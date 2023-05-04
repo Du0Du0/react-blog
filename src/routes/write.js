@@ -2,56 +2,62 @@ import './write.css'
 import {useState} from 'react';
 import {Routes, Route, Link, useNavigate, Navigate} from 'react-router-dom'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faRotate } from "@fortawesome/free-solid-svg-icons"
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
-import {faBookmark} from "@fortawesome/free-solid-svg-icons"
-import {faToggleOff} from "@fortawesome/free-solid-svg-icons"
-import {faBell} from "@fortawesome/free-solid-svg-icons"
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import App from '../App.js'
 
-
-
-function Write () {
+function Write (props) {
+    const { listTitle, setlistTitle} = props;
     let Navigate = useNavigate();
     const [selectedTopic, setSelectedTopic] = useState(1);
     const [tags, setTags] = useState([]);
+    let [value,setValue] = useState('');
 
+  
+    const handleClick = () => {
+      let copy = [...listTitle];
+      copy.unshift(value);
+      setlistTitle(copy);
+      Navigate('/');
+    };
+
+
+    // 해시태그 입력창 엔터 작동 및 해시태그 입력 시 입력창 초기화
     function handleKeyDown (e) {
-        if(e.key !== 'Enter') return
+        if(e.key !== 'Enter') 
+        return
         const value = e.target.value
-        if(!value.trim()) return
+        if(!value.trim()) 
+        return
         setTags([...tags, value]);
         e.target.value = '';
     }
 
+    // 해시태그 x버튼 누를 시 해시태그 삭제
     function removeTags (index) {
         setTags(tags.filter((el, i) => i !== index ))
-     }
+    }
 
     return (
       <>
         <div className="write-title-container">
           <div className="write-title">블로그 글쓰기</div>
-          <button className="write-save-Btn" Link to="/">
+          <button className="write-save-Btn" Link to="#">
             임시저장 | 0
           </button>
         </div>
 
+        {/* 토픽 select 버튼 */}
         <div className="write-topic-container">
           <div className="write-topic-title">
             <label htmlFor="">토픽</label>
           </div>
           <div>
-            <select
-              className="write-topic-select"
-              value={selectedTopic}
+            <select className="write-topic-select" value={selectedTopic}
               onChange={(e) => setSelectedTopic(e.target.value)}
               disabled={selectedTopic === "1"}
             >
-              <option value="1" disabled>
-                토픽을 선택해주세요.
-              </option>
+              <option value="1" disabled>토픽을 선택해주세요.</option>
               <option value="2">Css</option>
               <option value="3">Javascript</option>
               <option value="4">React</option>
@@ -60,16 +66,14 @@ function Write () {
           </div>
         </div>
 
+        {/* 제목 입력창 */}
         <div className="write-selectTitle-container">
           <label htmlFor="#" className="write-selectTitle">
             제목
           </label>
           <div>
-            <input
-              type="text"
-              className="write-selectTitle-input"
-              placeholder="제목을 입력해주세요."
-            ></input>
+            <input type="text" className="write-selectTitle-input" placeholder="제목을 입력해주세요." onChange={(e)=> setValue(e.target.value)}>
+            </input>
           </div>
         </div>
 
@@ -143,7 +147,7 @@ function Write () {
           >
             취소
           </button>
-          <button className="write-submit-btn">등록</button>
+          <button className="write-submit-btn" onClick={handleClick}>등록</button>
         </div>
       </>
     );

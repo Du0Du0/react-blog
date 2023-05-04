@@ -173,8 +173,7 @@ function App() {
       })
     }
 
-    <input onChange={(e)=> setValue(e.target.value)
-    }/>
+ 
 
 
     {/* {
@@ -182,13 +181,18 @@ function App() {
     } */}
     </>
       }/>
-      <Route path="/write" element={<Write/>}/>
+      <Route path="/write" element={ <Write
+        listTitle={listTitle}
+        setlistTitle={setlistTitle}/>
+      }
+            />
       <Route path="/detail" element={ <Detail
               listTitle={listTitle}
               likeBtn={likeBtn}
               setlistTitle={setlistTitle}
               setlikeBtn={setlikeBtn}
-              title = {title} />
+              title = {title}
+              value = {value} />
               }
             
           />
