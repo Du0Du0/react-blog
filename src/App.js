@@ -98,7 +98,7 @@ function App() {
 
     {/* 네비게이션 카테고리 */}
       <ul className='nav-menu'>
-    <div><li Link to= "#">프론트엔드</li></div>
+    <div><li onClick={()=> {{Navigate('/')}}}>프론트엔드</li></div>
     <div><li >백엔드</li></div>
     <div><li>CS</li></div>
     <div><li>플레이라운드</li></div>
