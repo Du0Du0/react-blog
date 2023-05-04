@@ -22,8 +22,12 @@ function Write () {
         const value = e.target.value
         if(!value.trim()) return
         setTags([...tags, value]);
+        e.target.value = '';
     }
 
+    function removeTags (index) {
+        setTags(tags.filter((el, i) => i !== index ))
+     }
 
     return (
       <>
@@ -84,7 +88,7 @@ function Write () {
             {tags.map((tags, i) => (
               <div className="tag-item">
                 <span className="text">{tags}</span>&nbsp;
-                <span className="close"> &times;</span>
+                <span className="close" onClick={() => {removeTags(i)}}> &times;</span>
               </div>
             ))}
             <input
@@ -123,7 +127,7 @@ function Write () {
         </div>
 
         <div className="write-submit-container">
-          <button
+          <button type='submit'
             onClick={() => {
               if (
                 window.confirm("취소하시면 작성중인 내용은 지워집니다.") == true

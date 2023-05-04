@@ -161,6 +161,7 @@ margin-bottom: 10px;
     padding: 8px 13px;
     line-height: 8px;
     border-radius: 20px;
+    cursor: pointer;
 }
 
 .tags-input {
