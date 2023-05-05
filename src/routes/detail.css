@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400&display=swap');
+
+:root {
+  --main-color: rgb(6, 86, 102);
+  --dark-main-color: rgb(6, 40, 51);
+  --border-color: rgb(188, 188, 188);
+  --font-color: #333333;
+  --font-color-bright: rgb(212, 212, 212);
+  --font-color-bright-sub: #bbbbbb;
+  --hover: rgb(0, 192, 154);
+  font-family: 'Nanum Gothic', sans-serif;
+  margin: 0;
+  padding: 0;
+  width:100%;
+  overflow-x:hidden;
+}
+
+.detail-line{
+    display: flex;
+    justify-content: center; /* 선의 가운데 정렬 */
+
+  width: 100%; /* 부모 요소의 너비에 맞게 설정 */
+    width: 50px;
+    border: 1px solid var(--border-color);
+    margin: auto;
+}
+
+
+.detail-title{
+display: flex;
+font-size: 30px;
+}

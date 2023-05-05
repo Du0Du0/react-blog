@@ -84,14 +84,17 @@ function ArrayBtn(props) {
 
 
 function App() {
+
   let post = '리액트 스터디';
   let [listTitle,setlistTitle] = useState(['ㄷ액트는 왜 쓸까?','ㄴsx는 무엇일까?', 'ㄱtate는 언제쓸까?']);
   let [likeBtn, setlikeBtn] = useState([0,0,0]);
-  
+  const [editorData, setEditorData] = useState('');
+
   let [title, setTitle] = useState(0);
   let [value,setValue] = useState('');
   let [arrBtn, setArrBtn] = useState(false);
   let Navigate = useNavigate();
+ 
 
   return (
     <div className="App">
@@ -183,7 +186,10 @@ function App() {
       }/>
       <Route path="/write" element={ <Write
         listTitle={listTitle}
-        setlistTitle={setlistTitle}/>
+        setlistTitle={setlistTitle}
+        editorData= {editorData}
+        setEditorData = {setEditorData}
+      />
       }
             />
       <Route path="/detail" element={ <Detail
@@ -192,13 +198,18 @@ function App() {
               setlistTitle={setlistTitle}
               setlikeBtn={setlikeBtn}
               title = {title}
-              value = {value} />
+              value = {value}
+              editorData= {editorData}
+              setEditorData = {setEditorData}
+              />
               }
             
           />
       <Route/>
       <Route/>
     </Routes>
+
+
 
    
     </div>

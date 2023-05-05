@@ -6,13 +6,24 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import App from '../App.js'
 
+
 function Write (props) {
     const { listTitle, setlistTitle} = props;
     let Navigate = useNavigate();
     const [selectedTopic, setSelectedTopic] = useState(1);
     const [tags, setTags] = useState([]);
     let [value,setValue] = useState('');
+    const [editorData, setEditorData] = useState('');
 
+
+    const onEditorDataChange = (event, editor) => {
+        const data = editor.getData();
+        setEditorData(data);
+        console.log('EditorData:', data);
+        console.log(editorData)
+      }
+
+  
 //   제출버튼 누를 시 글목록에 입력한 제목이 뜸
     const handleClick = () => {
       let copy = [...listTitle];
@@ -20,8 +31,6 @@ function Write (props) {
       setlistTitle(copy);
       Navigate('/');
     };
-
-
     // 해시태그 입력창 엔터 작동 및 해시태그 입력 시 입력창 초기화
     function handleKeyDown (e) {
         if(e.key !== 'Enter') 
@@ -32,11 +41,15 @@ function Write (props) {
         setTags([...tags, value]);
         e.target.value = '';
     }
-
     // 해시태그 x버튼 누를 시 해시태그 삭제
     function removeTags (index) {
         setTags(tags.filter((el, i) => i !== index ))
     }
+
+
+    
+
+
 
     return (
       <>
@@ -46,7 +59,7 @@ function Write (props) {
             임시저장 | 0
           </button>
         </div>
-
+        
         {/* 토픽 select 버튼 */}
         <div className="write-topic-container">
           <div className="write-topic-title">
@@ -65,7 +78,6 @@ function Write (props) {
             </select>
           </div>
         </div>
-
         {/* 제목 입력창 */}
         <div className="write-selectTitle-container">
           <label htmlFor="#" className="write-selectTitle">
@@ -76,14 +88,12 @@ function Write (props) {
             </input>
           </div>
         </div>
-
         <div className="write-tag-container">
           <div className="write-tag-title">
             <label>
               태그 - <span>내용을 대표하는 태그 3개 정도 입력해주세요.</span>
             </label>
           </div>
-
           <div className="write-tag-box">
             {/* <div className='tag-item'>
 <span className='text'>hello!</span>&nbsp;
@@ -103,7 +113,6 @@ function Write (props) {
             ></input>
           </div>
         </div>
-
         <div className="write-textArea-container">
           <label htmlFor="#" className="write-selectTitle">
             본문
@@ -111,25 +120,12 @@ function Write (props) {
           <div>
             <CKEditor
               editor={ClassicEditor}
-              data="<p></p>"
-              onReady={(editor) => {
-                // You can store the "editor" and use when it is needed.
-                console.log("Editor is ready to use!", editor);
-              }}
-              onChange={(event, editor) => {
-                const data = editor.getData();
-                console.log({ event, editor, data });
-              }}
-              onBlur={(event, editor) => {
-                console.log("Blur.", editor);
-              }}
-              onFocus={(event, editor) => {
-                console.log("Focus.", editor);
-              }}
+              editorData={editorData} setEditorData={setEditorData}
+              onChange={onEditorDataChange}
             />
           </div>
         </div>
-
+    
         <div className="write-submit-container">
           <button type='submit'
             onClick={() => {
@@ -151,7 +147,6 @@ function Write (props) {
         </div>
       </>
     );
-
     
 }
 
