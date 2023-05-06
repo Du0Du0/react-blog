@@ -160,22 +160,25 @@ function App() {
 
 
 {
-      listTitle.map((a, i)=>{
-        return(
-          <div className="list">
-     <h4 onClick={()=> { Navigate('/detail'); setTitle(i);}}>{listTitle[i]}
-     <span onClick={(e) => {
-      e.stopPropagation();
-      let likeBtnArr = [...likeBtn];
-      likeBtnArr[i] = likeBtnArr[i]+1;
-      setlikeBtn(likeBtnArr);
-     }}>👍</span>{likeBtn[i]}</h4>
-     <p>2023-05-01</p>
-      </div>
-        )
-      })
-    }
+  listTitle.map((a, i) => {
+    return (
+      <div className="list">
+        <h4 onClick={() => { Navigate('/detail'); setTitle(i); }}>{listTitle[i]}
+          <span onClick={(e) => {
+            e.stopPropagation();
+            let likeBtnArr = [...likeBtn];
+            likeBtnArr[i] = likeBtnArr[i] + 1;
+            setlikeBtn(likeBtnArr);
+          }}>👍</span>{likeBtn[i]}
+        </h4>
 
+  
+
+        <p>2023-05-01</p>
+      </div>
+    )
+  })
+}
  
 
 

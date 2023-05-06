@@ -13,17 +13,17 @@ function Write (props) {
     const [selectedTopic, setSelectedTopic] = useState(1);
     const [tags, setTags] = useState([]);
     let [value,setValue] = useState('');
-    const [editorData, setEditorData] = useState('');
-
+    const [editorData, setEditorData] = useState(['']);
 
     const onEditorDataChange = (event, editor) => {
-        const data = editor.getData();
-        setEditorData(data);
-        console.log('EditorData:', data);
-        console.log(editorData)
-      }
+      let copy = [...editorData];
+      const data = editor.getData();
+      copy.push(data);
+      setEditorData(copy);
+    };
 
-  
+
+    
 //   제출버튼 누를 시 글목록에 입력한 제목이 뜸
     const handleClick = () => {
       let copy = [...listTitle];
@@ -147,7 +147,9 @@ function Write (props) {
         </div>
       </>
     );
-    
+  
+
+
 }
 
 export default Write;
