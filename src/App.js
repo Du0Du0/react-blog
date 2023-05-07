@@ -88,14 +88,23 @@ function App() {
   let post = '리액트 스터디';
   let [listTitle,setlistTitle] = useState(['ㄷ액트는 왜 쓸까?','ㄴsx는 무엇일까?', 'ㄱtate는 언제쓸까?']);
   let [likeBtn, setlikeBtn] = useState([0,0,0]);
-  const [editorData, setEditorData] = useState('');
+  const [editorData, setEditorData] = useState(['좋아','좋아2','좋아3']);
 
   let [title, setTitle] = useState(0);
-  let [value,setValue] = useState('');
   let [arrBtn, setArrBtn] = useState(false);
   let Navigate = useNavigate();
- 
+  
 
+  let [inputValue, setInputValue] = useState('');
+  let [inputContent, setInputContent] = useState('');
+
+
+
+  console.log('editorData:', editorData);
+  console.log(editorData)
+
+
+ 
   return (
     <div className="App">
     <div className="nav">
@@ -162,8 +171,8 @@ function App() {
 {
   listTitle.map((a, i) => {
     return (
-      <div className="list">
-        <h4 onClick={() => { Navigate('/detail'); setTitle(i); }}>{listTitle[i]}
+      <div className="list" key={i}>
+      <h4 onClick={() => { Navigate('/detail'); setTitle(i);}}>{listTitle[i]}
           <span onClick={(e) => {
             e.stopPropagation();
             let likeBtnArr = [...likeBtn];
@@ -171,15 +180,11 @@ function App() {
             setlikeBtn(likeBtnArr);
           }}>👍</span>{likeBtn[i]}
         </h4>
-
-  
-
         <p>2023-05-01</p>
       </div>
     )
   })
 }
- 
 
 
     {/* {
@@ -201,9 +206,12 @@ function App() {
               setlistTitle={setlistTitle}
               setlikeBtn={setlikeBtn}
               title = {title}
-              value = {value}
+          
               editorData= {editorData}
               setEditorData = {setEditorData}
+         
+
+              
               />
               }
             

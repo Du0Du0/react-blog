@@ -6,8 +6,8 @@ import HorizonLine from '../HorizontalLine.js';
 import './write.js';
 
 function Detail(props) {
-  const { listTitle, likeBtn, setlistTitle, setlikeBtn } = props;
-  const [editorData, setEditorData] = useState(['']); // 배열로 초기화
+  const { listTitle, likeBtn, setlistTitle, setlikeBtn, editorData, setEditorData } = props;
+
   const navigate = useNavigate();
 
   console.log('editorData:', editorData);
@@ -31,16 +31,18 @@ function Detail(props) {
       <h4 className='detail-title'>{listTitle[props.title]}</h4>
       <p>날짜</p>
 
-      {editorData.map((data, index) => (
-      <div key={index}>
-        <p onClick={() => setEditorData(data)}>
-          {props.data}
+    
+      <div>
+        <p>
+       
+         {editorData[props.title]}
         </p>
           <button>글수정</button>
           <button onClick={handleClick}>삭제</button>
         </div>
-      ))}
+
     </div>
+  
   );
 }
 

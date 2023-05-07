@@ -5,32 +5,38 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import App from '../App.js'
+import Detail from './detail.js'
+
 
 
 function Write (props) {
-    const { listTitle, setlistTitle} = props;
+  const {  likeBtn,  setlikeBtn, editorData, setEditorData, title, setTitle, listTitle,setlistTitle } = props;
     let Navigate = useNavigate();
     const [selectedTopic, setSelectedTopic] = useState(1);
     const [tags, setTags] = useState([]);
-    let [value,setValue] = useState('');
-    const [editorData, setEditorData] = useState(['']);
 
-    const onEditorDataChange = (event, editor) => {
-      let copy = [...editorData];
-      const data = editor.getData();
-      copy.push(data);
-      setEditorData(copy);
-    };
 
+    let [inputValue, setInputValue] = useState('');
+    let [inputContent, setInputContent] = useState('');
+
+  
+  
 
     
-//   제출버튼 누를 시 글목록에 입력한 제목이 뜸
-    const handleClick = () => {
-      let copy = [...listTitle];
-      copy.unshift(value);
-      setlistTitle(copy);
-      Navigate('/');
-    };
+//   제출버튼 누를 시 글목록에 입력한 제목,내용이 뜸
+const handleClick = async () => {
+  let titleCopy = [...listTitle];
+  titleCopy.unshift(inputValue);
+
+  let contentCopy = [...editorData];
+  contentCopy.unshift(inputContent);
+
+  await Promise.all([setlistTitle(titleCopy), setEditorData(contentCopy)]);
+
+  Navigate('/');
+};
+
+
     // 해시태그 입력창 엔터 작동 및 해시태그 입력 시 입력창 초기화
     function handleKeyDown (e) {
         if(e.key !== 'Enter') 
@@ -46,16 +52,18 @@ function Write (props) {
         setTags(tags.filter((el, i) => i !== index ))
     }
 
-
-    
-
+    console.log('listTitle:', listTitle)
+    console.log(listTitle)
+    console.log('editorData:', editorData);
+    console.log(editorData)
+   
 
 
     return (
       <>
         <div className="write-title-container">
           <div className="write-title">블로그 글쓰기</div>
-          <button className="write-save-Btn" Link to="#">
+          <button className="write-save-Btn">
             임시저장 | 0
           </button>
         </div>
@@ -84,7 +92,10 @@ function Write (props) {
             제목
           </label>
           <div>
-            <input type="text" className="write-selectTitle-input" placeholder="제목을 입력해주세요." onChange={(e)=> setValue(e.target.value)}>
+            <input type="text" className="write-selectTitle-input" placeholder="제목을 입력해주세요." onChange={
+              (e)=> {setInputValue(e.target.value)}
+            }
+            >
             </input>
           </div>
         </div>
@@ -119,10 +130,17 @@ function Write (props) {
           </label>
           <div>
             <CKEditor
-              editor={ClassicEditor}
-              editorData={editorData} setEditorData={setEditorData}
-              onChange={onEditorDataChange}
-            />
+          editor={ClassicEditor}
+          data={inputContent}
+          onChange={(event, editor) => {
+            const data = editor.getData();
+            setInputContent(data);
+              }}
+             
+             ></CKEditor>
+            
+              
+            
           </div>
         </div>
     
@@ -143,11 +161,16 @@ function Write (props) {
           >
             취소
           </button>
-          <button className="write-submit-btn" onClick={handleClick}>등록</button>
+          <button type ="submit" className="write-submit-btn"onClick={() => {
+  handleClick(); 
+
+}}>등록</button>
         </div>
+       
       </>
     );
   
+
 
 
 }
