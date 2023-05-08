@@ -95,7 +95,7 @@ function App() {
   let [title, setTitle] = useState(0);
   let [arrBtn, setArrBtn] = useState(false);
   let Navigate = useNavigate();
-  
+  let [searched, setSearched] = useState(['']);
 
   let [inputValue, setInputValue] = useState('');
   let [inputContent, setInputContent] = useState('');
@@ -164,30 +164,84 @@ function App() {
 
 <div className='search-container'>
 <div className='reload-btn' onClick={() => {window.location.reload();}}><FontAwesomeIcon icon={faRotate} /></div>
-<div className='search-btn'><FontAwesomeIcon icon={faMagnifyingGlass} className="search-icon"/><input FontAwesomeIcon icon={faMagnifyingGlass} placeholder='블로그 내에서 검색'/></div>
-<div className='page-btn'><p>{listTitle.length}개의 글</p></div>
+<div className='search-btn'>
+  <FontAwesomeIcon icon={faMagnifyingGlass} className="search-icon" />
+  <input
+    type='text'
+    name='keyword'
+    placeholder='블로그 내에서 검색'
+    onKeyDown={(e) => {
+      if (e.key === 'Enter') {
+        const searchWord = e.target.value
+        const newFilter = listTitle.filter(item => item.includes(searchWord))
+        return setSearched(newFilter)
+      }
+   
+    }}
+  />
 </div>
 
 
-
-{
-  listTitle.map((a, i) => {
+<div className='page-btn'><p>{listTitle.length}개의 글</p></div>
+</div>
+{searched.length > 0 ? (
+  searched.map((a, i) => {
     return (
       <div className="list" key={i}>
-      <h4 onClick={() => { Navigate('/detail'); setTitle(i);}}>{listTitle[i]}
+        <h4 onClick={() => { Navigate('/detail'); setTitle(i);}}>
+          {searched[i]}
           <span onClick={(e) => {
             e.stopPropagation();
             let likeBtnArr = [...likeBtn];
             likeBtnArr[i] = likeBtnArr[i] + 1;
             setlikeBtn(likeBtnArr);
-          }}>👍</span>{likeBtn[i]}
+          }}>👍</span>
+          {likeBtn[i]}
+        </h4>
+        <p>2023-01-20{CurrentTime}</p>
+      </div>
+    )
+  })
+) : (
+  listTitle.map((a, i) => {
+    return (
+      <div className="list" key={i}>
+        <h4 onClick={() => { Navigate('/detail'); setTitle(i);}}>
+          {listTitle[i]}
+          <span onClick={(e) => {
+            e.stopPropagation();
+            let likeBtnArr = [...likeBtn];
+            likeBtnArr[i] = likeBtnArr[i] + 1;
+            setlikeBtn(likeBtnArr);
+          }}>👍</span>
+          {likeBtn[i]}
+        </h4>
+        <p>2023-01-20{CurrentTime}</p>
+      </div>
+    )
+  })
+)}
+
+
+{
+listTitle.map((a, i) => {
+    return (
+      <div className="list" key={i}>
+        <h4 onClick={() => { Navigate('/detail'); setTitle(i);}}>
+          {listTitle[i]}
+          <span onClick={(e) => {
+            e.stopPropagation();
+            let likeBtnArr = [...likeBtn];
+            likeBtnArr[i] = likeBtnArr[i] + 1;
+            setlikeBtn(likeBtnArr);
+          }}>👍</span>
+          {likeBtn[i]}
         </h4>
         <p>2023-01-20{CurrentTime}</p>
       </div>
     )
   })
 }
-
 
     {/* {
       modal == true ? <Modal listTitle={listTitle} title={title}/> : null
