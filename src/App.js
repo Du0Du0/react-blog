@@ -221,7 +221,7 @@ function App() {
     )
   })
 )}
-
+{/* 
 
 {
 listTitle.map((a, i) => {
@@ -241,7 +241,7 @@ listTitle.map((a, i) => {
       </div>
     )
   })
-}
+} */}
 
     {/* {
       modal == true ? <Modal listTitle={listTitle} title={title}/> : null
