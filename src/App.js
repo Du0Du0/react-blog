@@ -165,7 +165,7 @@ function App() {
 <div className='search-container'>
 <div className='reload-btn' onClick={() => {window.location.reload();}}><FontAwesomeIcon icon={faRotate} /></div>
 <div className='search-btn'><FontAwesomeIcon icon={faMagnifyingGlass} className="search-icon"/><input FontAwesomeIcon icon={faMagnifyingGlass} placeholder='블로그 내에서 검색'/></div>
-<div className='page-btn'><p>10개의 글</p></div>
+<div className='page-btn'><p>{listTitle.length}개의 글</p></div>
 </div>
 
 
