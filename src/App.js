@@ -10,6 +10,8 @@ import {faToggleOff} from "@fortawesome/free-solid-svg-icons"
 import {faBell} from "@fortawesome/free-solid-svg-icons"
 import Write from './routes/write.js'
 import Detail from './routes/detail.js'
+import CurrentTime from './routes/detail.js'
+
 
 // function Modal(props) {
 //   return (
@@ -86,7 +88,7 @@ function ArrayBtn(props) {
 function App() {
 
   let post = '리액트 스터디';
-  let [listTitle,setlistTitle] = useState(['ㄷ액트는 왜 쓸까?','ㄴsx는 무엇일까?', 'ㄱtate는 언제쓸까?']);
+  let [listTitle,setlistTitle] = useState(['가나초콜릿은 왜 맛있지','나비는 무엇일까?', '다람쥐는 다람쥐']);
   let [likeBtn, setlikeBtn] = useState([0,0,0]);
   const [editorData, setEditorData] = useState(['좋아','좋아2','좋아3']);
 
@@ -161,7 +163,7 @@ function App() {
 }
 
 <div className='search-container'>
-<div className='reload-btn'><FontAwesomeIcon icon={faRotate} /></div>
+<div className='reload-btn' onClick={() => {window.location.reload();}}><FontAwesomeIcon icon={faRotate} /></div>
 <div className='search-btn'><FontAwesomeIcon icon={faMagnifyingGlass} className="search-icon"/><input FontAwesomeIcon icon={faMagnifyingGlass} placeholder='블로그 내에서 검색'/></div>
 <div className='page-btn'><p>10개의 글</p></div>
 </div>
@@ -180,7 +182,7 @@ function App() {
             setlikeBtn(likeBtnArr);
           }}>👍</span>{likeBtn[i]}
         </h4>
-        <p>2023-05-01</p>
+        <p>2023-01-20{CurrentTime}</p>
       </div>
     )
   })

@@ -128,15 +128,18 @@ const handleClick = async () => {
           <label htmlFor="#" className="write-selectTitle">
             본문
           </label>
-          <div>
-            <CKEditor
+          <div >
+            <CKEditor 
           editor={ClassicEditor}
           data={inputContent}
+          config={{
+            enterMode: CKEditor.ENTER_BR
+          }}
           onChange={(event, editor) => {
             const data = editor.getData();
-            setInputContent(data);
+            setInputContent(data)
               }}
-             
+            
              ></CKEditor>
             
               
