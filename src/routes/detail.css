@@ -18,8 +18,7 @@
 .detail-line{
     display: flex;
     justify-content: center; /* 선의 가운데 정렬 */
-
-  width: 100%; /* 부모 요소의 너비에 맞게 설정 */
+     width: 100%; /* 부모 요소의 너비에 맞게 설정 */
     width: 50px;
     border: 1px solid var(--border-color);
     margin: auto;
@@ -29,4 +28,54 @@
 .detail-title{
 display: flex;
 font-size: 30px;
+justify-content: left;
+margin: auto;
+margin-top: 60px;
+width: 800px;
+}
+
+.detail-date{
+  display: flex;
+  justify-content: left;
+  margin: auto;
+  margin-top: 20px;
+  width: 800px;
+}
+
+.detail-content{
+  display: flex;
+  margin: auto;
+  margin-top: 100px;
+  width: 800px;
+  justify-content: left;
+}
+
+.detail-update{
+  background-color: var(--main-color);
+  border: 1px solid;
+  border-color: var(--border-color);
+  color: rgb(255, 255, 255);
+  font-weight: 590;
+  padding: 8px;
+  cursor: pointer;
+  line-height: 20px;
+  height: 40px;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.detail-delete{
+  background-color: var(--main-color);
+  border: 1px solid;
+  border-color: var(--border-color);
+  color: rgb(255, 255, 255);
+  font-weight: 590;
+  padding: 8px;
+  cursor: pointer;
+  line-height: 20px;
+  text-align: center;
+  height: 40px;
+  border-radius: 5px;
+  margin-top: 10px;
 }

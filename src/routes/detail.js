@@ -17,13 +17,8 @@ function CurrentTime() {
   return <span>{timestring}</span>;
 }
 
-
-
-
-
 function Detail(props) {
   const { listTitle, likeBtn, setlistTitle, setlikeBtn, editorData, setEditorData } = props;
-
   const navigate = useNavigate();
 
   console.log('editorData:', editorData);
@@ -45,26 +40,11 @@ function Detail(props) {
     <div>
       <HorizonLine text={'프론트엔드/토픽'} color={'rgb(188, 188, 188)'} />
       <h4 className='detail-title'>{listTitle[props.title]}</h4>
-      <p onChange={()=> {CurrentTime()}}>날짜</p>
-
-
-
-
-
-
-
-    
-      <div>
-        <p>
-       
-         {editorData[props.title]}
-        </p>
-          <button>글수정</button>
-          <button onClick={handleClick}>삭제</button>
-        </div>
-
-    </div>
-  
+      <p className='detail-date' onChange={()=> {CurrentTime()}}>날짜</p>
+      <p className='detail-content'>{editorData[props.title]}</p>
+      <div className='detail-update'><button>글수정</button></div>
+      <div button className='detail-delete'><button onClick={handleClick}>삭제</button></div>
+      </div>
   );
 }
 
