@@ -99,7 +99,7 @@ function App() {
   let [inputValue, setInputValue] = useState('');
   let [inputContent, setInputContent] = useState('');
 
-  let [modal,setModal] = useState(true);
+  let [modal,setModal] = useState(false);
   let [searchWord, setSearchWord] = useState([]);
 
   console.log('editorData:', editorData);
@@ -109,7 +109,7 @@ function App() {
     return (
       <div className='modal'>
     
-        <p><span className='search-result-title'>{props.searchWord}</span>와(과) 일치하는 검색결과가 없습니다.</p>&nbsp;&nbsp;&nbsp;
+        <p><span className='search-result-title'>'{props.searchWord}'</span>와(과) 일치하는 검색결과</p>&nbsp;&nbsp;&nbsp;
         <p>({props.searched.length}건)</p>
       </div>
     )
@@ -146,7 +146,7 @@ function App() {
 
       <Routes>
       <Route path="/" element={
-        <>
+        <div>
  
 
     <div className='category-container'>
@@ -179,26 +179,30 @@ function App() {
     name='keyword'
     placeholder='블로그 내에서 검색'
     onChange={(e) => setSearchWord(e.target.value)}
+    // 입력시킨 검색 단어와 일치하는 값 찾아주는 기능
     onKeyDown={(e) => {
       if (e.key === 'Enter') {
         const searchWord = e.target.value
         const newFilter = listTitle.filter(item => item.includes(searchWord))
         return setSearched(newFilter)
       }
-   
+      setModal(true) 
     }}
   />
 </div>
 
-
+{/* 총 리스트 갯수 표시하는 기능 */}
 <div className='page-btn'><p>{listTitle.length}개의 글</p></div>
+{
+    modal == true ? <Modal searchWord={searchWord} setSearchWord={setSearchWord} searched ={searched} setSearched = {setSearched}/> : null
+  }
 </div>
 {searched.length > 0 ? (
-  searched.map((a, i) => {
+  listTitle.filter(title => title.includes(searched)).map((a, i) => {
     return (
       <div className="list" key={i}>
         <h4 onClick={() => { Navigate('/detail'); setTitle(i);}}>
-          {searched[i]}
+          {a}
           <span onClick={(e) => {
             e.stopPropagation();
             let likeBtnArr = [...likeBtn];
@@ -209,20 +213,27 @@ function App() {
         </h4>
         <p>2023-01-20{CurrentTime}</p>
       </div>
-    )
+    ) 
   })
 ) : (
-  <div>
-    {listTitle.length === 0 ? (
-    setModal(!modal)
-
-    ) : null }
-  </div>
- 
+  listTitle.map((a, i) => {
+    return (
+      <div className="list" key={i}>
+        <h4 onClick={() => { Navigate('/detail'); setTitle(i);}}>
+          {a}
+          <span onClick={(e) => {
+            e.stopPropagation();
+            let likeBtnArr = [...likeBtn];
+            likeBtnArr[i] = likeBtnArr[i] + 1;
+            setlikeBtn(likeBtnArr);
+          }}>👍</span>
+          {likeBtn[i]}
+        </h4>
+        <p>2023-01-20{CurrentTime}</p>
+      </div>
+    ) 
+  })
 )}
- {
-    modal == true ? <Modal searchWord={searchWord} setSearchWord={setSearchWord} searched ={searched} setSearched = {setSearched}/> : null
-  }
 
 
 {/* 
@@ -251,7 +262,7 @@ function App() {
      )}
    </div>
  ) */}
-
+{/* 
 
 {
 listTitle.map((a, i) => {
@@ -271,12 +282,11 @@ listTitle.map((a, i) => {
       </div>
     )
   })
-} 
+}  */}
 
-    {/* {
-      modal == true ? <Modal listTitle={listTitle} title={title}/> : null
-    } */}
-    </>
+  
+    </div>
+    
       }/>
       <Route path="/write" element={ <Write
         listTitle={listTitle}
