@@ -169,6 +169,11 @@
   }
 }
 
+.search-result-title{
+  font-weight: bold;
+  color: var(--hover);
+}
+
 
 .div{
   box-sizing: border-box;
@@ -194,6 +199,10 @@
 
 .modal {
   margin-top: 20px;
+  width: 800px;
+  display: flex;
+  justify-content: center;
+  margin: auto;
   padding: 20px;
   background: #eee;
   text-align: left;

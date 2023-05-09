@@ -109,8 +109,8 @@ function App() {
     return (
       <div className='modal'>
     
-        <p>{props.searchWord}을 찾을 수 없습니다.</p>
-        <p>상세내용</p>
+        <p><span className='search-result-title'>{props.searchWord}</span>와(과) 일치하는 검색결과가 없습니다.</p>&nbsp;&nbsp;&nbsp;
+        <p>({props.searched.length}건)</p>
       </div>
     )
   }
