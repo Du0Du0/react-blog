@@ -12,7 +12,6 @@ import Write from './routes/write.js'
 import Detail from './routes/detail.js'
 import CurrentTime from './routes/detail.js'
 
-
 // function Modal(props) {
 //   return (
 //     <div className='modal'>
@@ -100,12 +99,21 @@ function App() {
   let [inputValue, setInputValue] = useState('');
   let [inputContent, setInputContent] = useState('');
 
-
+  let [modal,setModal] = useState(true);
+  let [searchWord, setSearchWord] = useState([]);
 
   console.log('editorData:', editorData);
   console.log(editorData)
 
-
+  function Modal(props) {
+    return (
+      <div className='modal'>
+    
+        <p>{props.searchWord}을 찾을 수 없습니다.</p>
+        <p>상세내용</p>
+      </div>
+    )
+  }
  
   return (
     <div className="App">
@@ -170,6 +178,7 @@ function App() {
     type='text'
     name='keyword'
     placeholder='블로그 내에서 검색'
+    onChange={(e) => setSearchWord(e.target.value)}
     onKeyDown={(e) => {
       if (e.key === 'Enter') {
         const searchWord = e.target.value
@@ -203,25 +212,46 @@ function App() {
     )
   })
 ) : (
-  listTitle.map((a, i) => {
-    return (
-      <div className="list" key={i}>
-        <h4 onClick={() => { Navigate('/detail'); setTitle(i);}}>
-          {listTitle[i]}
-          <span onClick={(e) => {
-            e.stopPropagation();
-            let likeBtnArr = [...likeBtn];
-            likeBtnArr[i] = likeBtnArr[i] + 1;
-            setlikeBtn(likeBtnArr);
-          }}>👍</span>
-          {likeBtn[i]}
-        </h4>
-        <p>2023-01-20{CurrentTime}</p>
-      </div>
-    )
-  })
+  <div>
+    {listTitle.length === 0 ? (
+    setModal(!modal)
+
+    ) : null }
+  </div>
+ 
 )}
+ {
+    modal == true ? <Modal searchWord={searchWord} setSearchWord={setSearchWord} searched ={searched} setSearched = {setSearched}/> : null
+  }
+
+
 {/* 
+       : (
+   <div>
+     {listTitle.length === 0 ? (
+       alert('검색결과가 없습니다')
+     ) : (
+       listTitle.map((a, i) => {
+         return (
+           <div className="list" key={i}>
+             <h4 onClick={() => { Navigate('/detail'); setTitle(i);}}>
+               {listTitle[i]}
+               <span onClick={(e) => {
+                 e.stopPropagation();
+                 let likeBtnArr = [...likeBtn];
+                 likeBtnArr[i] = likeBtnArr[i] + 1;
+                 setlikeBtn(likeBtnArr);
+               }}>👍</span>
+              {likeBtn[i]}
+             </h4>
+             <p>2023-01-20{CurrentTime}</p>
+           </div>
+         )
+       })
+     )}
+   </div>
+ ) */}
+
 
 {
 listTitle.map((a, i) => {
@@ -241,7 +271,7 @@ listTitle.map((a, i) => {
       </div>
     )
   })
-} */}
+} 
 
     {/* {
       modal == true ? <Modal listTitle={listTitle} title={title}/> : null
