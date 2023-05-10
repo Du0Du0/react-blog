@@ -90,6 +90,7 @@ function App() {
   let [listTitle,setlistTitle] = useState(['가나초콜릿은 왜 맛있지','나비는 무엇일까?', '다람쥐는 다람쥐']);
   let [likeBtn, setlikeBtn] = useState([0,0,0]);
   const [editorData, setEditorData] = useState(['좋아','좋아2','좋아3']);
+  const [selectedTopic, setSelectedTopic] = useState(['React','Javascript','Vue']);
 
   let [title, setTitle] = useState(0);
   let [arrBtn, setArrBtn] = useState(false);
@@ -98,9 +99,12 @@ function App() {
 
   let [inputValue, setInputValue] = useState('');
   let [inputContent, setInputContent] = useState('');
+  const [value, setValue] = useState([]);
 
   let [modal,setModal] = useState(false);
   let [searchWord, setSearchWord] = useState([]);
+
+
 
   console.log('editorData:', editorData);
   console.log(editorData)
@@ -293,6 +297,8 @@ listTitle.map((a, i) => {
         setlistTitle={setlistTitle}
         editorData= {editorData}
         setEditorData = {setEditorData}
+        selectedTopic = {selectedTopic}
+        setSelectedTopic = {setSelectedTopic}
       />
       }
             />
@@ -302,10 +308,12 @@ listTitle.map((a, i) => {
               setlistTitle={setlistTitle}
               setlikeBtn={setlikeBtn}
               title = {title}
-          
               editorData= {editorData}
               setEditorData = {setEditorData}
-         
+              selectedTopic = {selectedTopic}
+               setSelectedTopic = {setSelectedTopic}
+               value = {value}
+               setValue = {setValue}
 
               
               />

@@ -10,18 +10,19 @@ import Detail from './detail.js'
 
 
 function Write (props) {
-  const {  likeBtn,  setlikeBtn, editorData, setEditorData, title, setTitle, listTitle,setlistTitle } = props;
+  const {  likeBtn,  setlikeBtn, editorData, setEditorData, title, setTitle, listTitle,setlistTitle, selectedTopic, setSelectedTopic } = props;
     let Navigate = useNavigate();
-    const [selectedTopic, setSelectedTopic] = useState(1);
+    
     const [tags, setTags] = useState([]);
+    const [value, setValue] = useState([]);
 
 
     let [inputValue, setInputValue] = useState('');
     let [inputContent, setInputContent] = useState('');
 
   
-  
-
+    console.log('selectedTopic:', selectedTopic);
+    console.log('setSelectedTopic:', setSelectedTopic);
     
 //   제출버튼 누를 시 글목록에 입력한 제목,내용이 뜸
 const handleClick = async () => {
@@ -31,7 +32,14 @@ const handleClick = async () => {
   let contentCopy = [...editorData];
   contentCopy.unshift(inputContent);
 
-  await Promise.all([setlistTitle(titleCopy), setEditorData(contentCopy)]);
+  let topicCopy = [...selectedTopic];
+  topicCopy.push(selectedTopic);
+
+  await Promise.all([
+    setlistTitle(titleCopy),
+    setEditorData(contentCopy),
+    setSelectedTopic(topicCopy),
+  ]);
 
   Navigate('/');
 };
@@ -74,16 +82,22 @@ const handleClick = async () => {
             <label htmlFor="">토픽</label>
           </div>
           <div>
-            <select className="write-topic-select" value={selectedTopic}
-              onChange={(e) => setSelectedTopic(e.target.value)}
-              disabled={selectedTopic === "1"}
-            >
-              <option value="1" disabled>토픽을 선택해주세요.</option>
-              <option value="2">Css</option>
-              <option value="3">Javascript</option>
-              <option value="4">React</option>
-              <option value="5">Vue</option>
-            </select>
+          <select
+    
+  className="write-topic-select"
+  onChange={(e) => {
+    const value = e.target.value;
+    const selectCopy = [...selectedTopic];
+    selectCopy.unshift(value)
+    setSelectedTopic(selectCopy);
+  }}>
+  <option disabled={value !== '토픽을 선택해주세요.'}>토픽을 선택해주세요.</option>
+  <option value='Css'>Css</option>
+  <option value='Javascript'>Javascript</option>
+  <option value='React'>React</option>
+  <option value='Vue'>Vue</option>
+</select>
+        
           </div>
         </div>
         {/* 제목 입력창 */}

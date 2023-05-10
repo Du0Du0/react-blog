@@ -18,11 +18,14 @@ function CurrentTime() {
 }
 
 function Detail(props) {
-  const { listTitle, likeBtn, setlistTitle, setlikeBtn, editorData, setEditorData } = props;
+  const { listTitle, likeBtn, setlistTitle, setlikeBtn, editorData, setEditorData, selectedTopic, setSelectedTopic, value, setValue } = props;
   const navigate = useNavigate();
 
   console.log('editorData:', editorData);
   console.log(editorData)
+
+  console.log('selectedTopic:', selectedTopic);
+    console.log('setSelectedTopic:', setSelectedTopic);
 
   function handleClick() {
     const result = window.confirm("정말로 삭제하시겠습니까?");
@@ -38,12 +41,12 @@ function Detail(props) {
 
   return (
     <div>
-      <HorizonLine text={'프론트엔드/토픽'} color={'rgb(188, 188, 188)'} />
+  <HorizonLine text={selectedTopic[props.title]} color={'rgb(188, 188, 188)'} />
       <h4 className='detail-title'>{listTitle[props.title]}</h4>
       <p className='detail-date' onChange={()=> {CurrentTime()}}>날짜</p>
       <p className='detail-content'>{editorData[props.title]}</p>
-      <div className='detail-update'><button>글수정</button></div>
-      <div button className='detail-delete'><button onClick={handleClick}>삭제</button></div>
+      <div><button className='detail-update'>글수정</button>&nbsp;&nbsp;&nbsp;<button className='detail-delete' onClick={handleClick}>삭제</button></div>
+ 
       </div>
   );
 }
