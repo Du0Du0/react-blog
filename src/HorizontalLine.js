@@ -1,4 +1,5 @@
 const HorizonLine = ({ color, text1, text2 }) => (
+  <div div style={{marginTop: '60px'}} >
   <div
     style={{
       display: "flex",
@@ -39,6 +40,7 @@ const HorizonLine = ({ color, text1, text2 }) => (
         zIndex: 0,
       }}
     />
+  </div>
   </div>
 );
   
