@@ -41,7 +41,7 @@ function Detail(props) {
 
   return (
     <div>
-  <HorizonLine text={selectedTopic[props.title]} color={'rgb(188, 188, 188)'} />
+  <HorizonLine text1={'프론트엔드 / '} text2={selectedTopic[props.title]} color={'rgb(188, 188, 188)'} />
       <h4 className='detail-title'>{listTitle[props.title]}</h4>
       <p className='detail-date' onChange={()=> {CurrentTime()}}>날짜</p>
       <p className='detail-content'>{editorData[props.title]}</p>
