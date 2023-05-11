@@ -313,11 +313,11 @@
   border: 1px solid;
   border-color: var(--border-color);
   width: 152px;
-  height: 207px;
+  height: 217px;
   background-color: white;
   box-shadow: 5px 5px 20px rgb(220, 220, 220);
-  margin-top: -26px;
-  margin-left: 50%;
+  margin-top: -16px;
+  margin-left: 71.5%;
   border-radius: 5px;
   justify-content: center;
 }
@@ -328,6 +328,7 @@
   border-color: var(--border-color);
   padding-bottom: 10px;
   font-size: 14px;
+  padding-left: 12px;
   display: flex;
   font-weight: 600;
   color: var(--color)
