@@ -11,6 +11,8 @@ import {faBell} from "@fortawesome/free-solid-svg-icons"
 import Write from './routes/write.js'
 import Detail from './routes/detail.js'
 import CurrentTime from './routes/detail.js'
+import PostTimeAgo from './routes/postTimeAgo.js'
+
 
 // function Modal(props) {
 //   return (
@@ -104,6 +106,8 @@ function App() {
   let [modal,setModal] = useState(false);
   let [searchWord, setSearchWord] = useState([]);
 
+  const [timeAgo, setTimeAgo] = useState(['3시간 전', '1일 전', '30분 전']);
+
   const [tags, setTags] = useState([
     ['React', 'Javascript', 'Vue',],
     ['React', 'Javascript', 'Vue',],
@@ -113,6 +117,10 @@ function App() {
   console.log('editorData:', editorData);
   console.log(editorData)
 
+  console.log('timeAgo:',timeAgo);
+  console.log(setTimeAgo);
+
+  
   function Modal(props) {
     return (
       <div className='modal'>
@@ -209,7 +217,7 @@ function App() {
   listTitle.filter(title => title.includes(searched)).map((a, i) => {
     return (
       <div className="list" key={i}>
-        <h4 onClick={() => { Navigate('/detail'); setTitle(i);}}>
+        <h4 className = "list-title" onClick={() => { Navigate('/detail'); setTitle(i);}}>
           {a}
           <span onClick={(e) => {
             e.stopPropagation();
@@ -219,7 +227,7 @@ function App() {
           }}>👍</span>
           {likeBtn[i]}
         </h4>
-        <p>2023-01-20{CurrentTime}</p>
+        <p>{timeAgo[i]}</p>
         <p className='listTitle-topic'>{selectedTopic[i]}</p>
         {tags.map((tags, i) => (
               <span className="listTile-tag-item" style={{marginLeft: '8px'}}>
@@ -244,7 +252,7 @@ function App() {
           }}>👍</span>
           {likeBtn[i]}
         </h4>
-        <p>2023-01-20{CurrentTime}</p>
+        <p>{timeAgo(i)}</p>
         <p className='listTitle-topic'>{selectedTopic(i)}</p>
         {tags.map((tags, i) => (
               <span className="tag-item" style={{marginLeft: '8px'}}>

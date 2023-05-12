@@ -463,6 +463,11 @@ display: flex;
   color: var(--font-color-bright-sub);
 }
 
+.list-title{
+  font-size: 18px;
+  color:  var(--font-color);
+}
+
 .listTitle-topic{
   background-color: var(--hover);
   border: none;

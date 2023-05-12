@@ -5,21 +5,12 @@ import './detail.css';
 import HorizonLine from '../HorizontalLine.js';
 import './write.js';
 
-function CurrentTime() {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, "0");
-  const date = String(now.getDate()).padStart(2, "0");
-  const hours = String(now.getHours()).padStart(2, "0");
-  const minutes = String(now.getMinutes()).padStart(2, "0");
-
-  const timestring = `${year}/${month}/${date} ${hours}:${minutes}`;
-  return <span>{timestring}</span>;
-}
-
 function Detail(props) {
-  const { listTitle, likeBtn, setlistTitle, setlikeBtn, editorData, setEditorData, selectedTopic, setSelectedTopic, value, setValue, tags, setTags } = props;
+  const { listTitle, likeBtn, setlistTitle, setlikeBtn, editorData, setEditorData, selectedTopic, setSelectedTopic, value, setValue, tags, setTags} = props;
   const navigate = useNavigate();
+
+
+  const [timeAgo, setTimeAgo] = useState(['3시간 전', '1일 전', '30분 전']);
 
   console.log('editorData:', editorData);
   console.log(editorData)
@@ -46,7 +37,7 @@ function Detail(props) {
     <div>
   <HorizonLine text1={'프론트엔드 / '} text2={selectedTopic[props.title]} color={'rgb(188, 188, 188)'} />
       <h4 className='detail-title'>{listTitle[props.title]}</h4>
-      <p className='detail-date' onChange={()=> {CurrentTime()}}>날짜</p>
+      <p className='detail-date'>{timeAgo[props.title]}</p>
       <p className='detail-content'>{editorData[props.title]}</p>
       <p>{props.tags}</p>
       <div className='detail-btn-container'><button className='detail-update'>글수정</button>&nbsp;&nbsp;&nbsp;<button className='detail-delete' onClick={handleClick}>삭제</button></div>

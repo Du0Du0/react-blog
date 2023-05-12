@@ -4,13 +4,13 @@ import {Routes, Route, Link, useNavigate, Navigate} from 'react-router-dom'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import App from '../App.js'
-import Detail from './detail.js'
-
+import App from '../App.js';
+import Detail from './detail.js';
+import PostTimeAgo from './postTimeAgo.js';
 
 
 function Write (props) {
-  const {  likeBtn,  setlikeBtn, editorData, setEditorData, title, setTitle, listTitle,setlistTitle, selectedTopic, setSelectedTopic, value, setValue } = props;
+  const {likeBtn,  setlikeBtn, editorData, setEditorData, title, setTitle, listTitle,setlistTitle, selectedTopic, setSelectedTopic, value, setValue} = props;
     let Navigate = useNavigate();
     
     const [tags, setTags] = useState([]);
@@ -18,12 +18,15 @@ function Write (props) {
 
     let [inputValue, setInputValue] = useState('');
     let [inputContent, setInputContent] = useState('');
-
+    const [timeAgo, setTimeAgo] = useState(['3시간 전', '1일 전', '30분 전']);
   
     console.log('selectedTopic:', selectedTopic);
     console.log('setSelectedTopic:', setSelectedTopic);
     console.log('tags:', tags);
     console.log('setTags:', setTags);
+      
+    console.log('timeAgo:',timeAgo);
+    console.log(setTimeAgo);
     
 //   제출버튼 누를 시 글목록에 입력한 제목,내용이 뜸
 const handleClick = async () => {
@@ -34,17 +37,22 @@ const handleClick = async () => {
   contentCopy.unshift(inputContent);
 
   let topicCopy = [...selectedTopic];
-  topicCopy.push(selectedTopic);
+  topicCopy.unshift(selectedTopic);
 
   let tagsCopy = [...tags];
-  tagsCopy.push(tags);
+  tagsCopy.unshift(tags);
+
+  const currentTime = new Date();
+  const timeAgoCopy = [`${currentTime.getHours()}시 ${currentTime.getMinutes()}분 전`, ...timeAgo];
 
   await Promise.all([
     setlistTitle(titleCopy),
     setEditorData(contentCopy),
     setSelectedTopic(topicCopy),
-    setTags(tagsCopy)
+    setTags(tagsCopy),
+    setTimeAgo(timeAgoCopy) 
   ]);
+
 
   Navigate('/');
 };
@@ -70,7 +78,8 @@ const handleClick = async () => {
     console.log('editorData:', editorData);
     console.log(editorData)
    
-
+    console.log('timeAgo:', editorData);
+    console.log(setTimeAgo);
 
     return (
       <>
