@@ -104,7 +104,11 @@ function App() {
   let [modal,setModal] = useState(false);
   let [searchWord, setSearchWord] = useState([]);
 
-
+  const [tags, setTags] = useState([
+    ['React', 'Javascript', 'Vue',],
+    ['React', 'Javascript', 'Vue',],
+    ['React', 'Javascript', 'Vue',]
+  ]);
 
   console.log('editorData:', editorData);
   console.log(editorData)
@@ -217,8 +221,14 @@ function App() {
         </h4>
         <p>2023-01-20{CurrentTime}</p>
         <p className='listTitle-topic'>{selectedTopic[i]}</p>
+        {tags.map((tags, i) => (
+              <span className="listTile-tag-item" style={{marginLeft: '8px'}}>
+                <span className="text">{'#'+tags[i]}</span>&nbsp;
+  
+              </span>
+            ))}
       </div>
-    ) 
+    );
   })
 ) : (
   listTitle.map((a, i) => {
@@ -236,10 +246,17 @@ function App() {
         </h4>
         <p>2023-01-20{CurrentTime}</p>
         <p className='listTitle-topic'>{selectedTopic(i)}</p>
+        {tags.map((tags, i) => (
+              <span className="tag-item" style={{marginLeft: '8px'}}>
+                <span className="text" >{'#'+tags[i]}</span>&nbsp;
+              </span>
+            ))}
       </div>
-    ) 
+    );
   })
 )}
+
+
 
 
 {/* 

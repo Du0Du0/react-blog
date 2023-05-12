@@ -467,17 +467,28 @@ display: flex;
   background-color: var(--hover);
   border: none;
   color: rgb(255, 255, 255);
-  font-weight: 590;
-  font-size: 12px;
-  width: 48px;
+  font-size: 14px;
   height: 20px;
+  display: inline-flex;
   padding: 5px 20px;
   cursor: pointer;
   text-align: center;
   border-radius: 5px;
   margin-top: 10px;
 }
+
 .listTitle-topic p{
   margin: auto;
 }
 
+.listTile-tag-item{
+  background-color: #f8f8f8;
+  display: inline-block;
+  padding: 5px 20px;
+  color: #808080;
+  text-align: center;
+  height: 20px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+}

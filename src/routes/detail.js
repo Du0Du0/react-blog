@@ -18,7 +18,7 @@ function CurrentTime() {
 }
 
 function Detail(props) {
-  const { listTitle, likeBtn, setlistTitle, setlikeBtn, editorData, setEditorData, selectedTopic, setSelectedTopic, value, setValue } = props;
+  const { listTitle, likeBtn, setlistTitle, setlikeBtn, editorData, setEditorData, selectedTopic, setSelectedTopic, value, setValue, tags, setTags } = props;
   const navigate = useNavigate();
 
   console.log('editorData:', editorData);
@@ -26,6 +26,9 @@ function Detail(props) {
 
   console.log('selectedTopic:', selectedTopic);
     console.log('setSelectedTopic:', setSelectedTopic);
+
+    console.log('tags:', tags);
+    console.log('setTags:', setTags);
 
   function handleClick() {
     const result = window.confirm("정말로 삭제하시겠습니까?");
@@ -45,6 +48,7 @@ function Detail(props) {
       <h4 className='detail-title'>{listTitle[props.title]}</h4>
       <p className='detail-date' onChange={()=> {CurrentTime()}}>날짜</p>
       <p className='detail-content'>{editorData[props.title]}</p>
+      <p>{props.tags}</p>
       <div className='detail-btn-container'><button className='detail-update'>글수정</button>&nbsp;&nbsp;&nbsp;<button className='detail-delete' onClick={handleClick}>삭제</button></div>
  
       </div>

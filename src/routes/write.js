@@ -10,11 +10,10 @@ import Detail from './detail.js'
 
 
 function Write (props) {
-  const {  likeBtn,  setlikeBtn, editorData, setEditorData, title, setTitle, listTitle,setlistTitle, selectedTopic, setSelectedTopic } = props;
+  const {  likeBtn,  setlikeBtn, editorData, setEditorData, title, setTitle, listTitle,setlistTitle, selectedTopic, setSelectedTopic, value, setValue } = props;
     let Navigate = useNavigate();
     
     const [tags, setTags] = useState([]);
-    const [value, setValue] = useState([]);
 
 
     let [inputValue, setInputValue] = useState('');
@@ -23,6 +22,8 @@ function Write (props) {
   
     console.log('selectedTopic:', selectedTopic);
     console.log('setSelectedTopic:', setSelectedTopic);
+    console.log('tags:', tags);
+    console.log('setTags:', setTags);
     
 //   제출버튼 누를 시 글목록에 입력한 제목,내용이 뜸
 const handleClick = async () => {
@@ -35,10 +36,14 @@ const handleClick = async () => {
   let topicCopy = [...selectedTopic];
   topicCopy.push(selectedTopic);
 
+  let tagsCopy = [...tags];
+  tagsCopy.push(tags);
+
   await Promise.all([
     setlistTitle(titleCopy),
     setEditorData(contentCopy),
     setSelectedTopic(topicCopy),
+    setTags(tagsCopy)
   ]);
 
   Navigate('/');
