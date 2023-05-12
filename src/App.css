@@ -462,3 +462,22 @@ display: flex;
   font-weight: 100;
   color: var(--font-color-bright-sub);
 }
+
+.listTitle-topic{
+  background-color: var(--hover);
+  border: none;
+  color: rgb(255, 255, 255);
+  font-weight: 590;
+  font-size: 12px;
+  width: 48px;
+  height: 20px;
+  padding: 5px 20px;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+.listTitle-topic p{
+  margin: auto;
+}
+

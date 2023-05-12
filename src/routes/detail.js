@@ -45,7 +45,7 @@ function Detail(props) {
       <h4 className='detail-title'>{listTitle[props.title]}</h4>
       <p className='detail-date' onChange={()=> {CurrentTime()}}>날짜</p>
       <p className='detail-content'>{editorData[props.title]}</p>
-      <div><button className='detail-update'>글수정</button>&nbsp;&nbsp;&nbsp;<button className='detail-delete' onClick={handleClick}>삭제</button></div>
+      <div className='detail-btn-container'><button className='detail-update'>글수정</button>&nbsp;&nbsp;&nbsp;<button className='detail-delete' onClick={handleClick}>삭제</button></div>
  
       </div>
   );

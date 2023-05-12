@@ -216,6 +216,7 @@ function App() {
           {likeBtn[i]}
         </h4>
         <p>2023-01-20{CurrentTime}</p>
+        <p className='listTitle-topic'>{selectedTopic[i]}</p>
       </div>
     ) 
   })
@@ -234,6 +235,7 @@ function App() {
           {likeBtn[i]}
         </h4>
         <p>2023-01-20{CurrentTime}</p>
+        <p className='listTitle-topic'>{selectedTopic(i)}</p>
       </div>
     ) 
   })
