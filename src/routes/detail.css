@@ -86,4 +86,25 @@ width: 800px;
   justify-content: center;
   width: 800px;
   margin: auto;
+  margin-bottom: 100px;
+}
+
+.detail-tags-container{
+  display: flex;
+  justify-content: left;
+  width: 810px;
+  margin: auto;
+  margin-bottom: 60px;
+}
+
+
+.detail-tag-item{
+  background-color: #ededed;
+  display: inline-block;
+  padding: 5px 20px;
+  color: #808080;
+  height: 20px;
+  font-size: 14px;
+  border-radius: 20px;
+  cursor: pointer;
 }

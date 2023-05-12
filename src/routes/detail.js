@@ -6,11 +6,16 @@ import HorizonLine from '../HorizontalLine.js';
 import './write.js';
 
 function Detail(props) {
-  const { listTitle, likeBtn, setlistTitle, setlikeBtn, editorData, setEditorData, selectedTopic, setSelectedTopic, value, setValue, tags, setTags} = props;
+  const { listTitle, likeBtn, setlistTitle, setlikeBtn, editorData, setEditorData, selectedTopic, setSelectedTopic, value, setValues} = props;
   const navigate = useNavigate();
 
 
   const [timeAgo, setTimeAgo] = useState(['3시간 전', '1일 전', '30분 전']);
+  const [tags, setTags] = useState([
+    ['React', 'Javascript', 'Vue',],
+    ['React', 'Javascript', 'Vue',],
+    ['React', 'Javascript', 'Vue',]
+  ]);
 
   console.log('editorData:', editorData);
   console.log(editorData)
@@ -39,9 +44,13 @@ function Detail(props) {
       <h4 className='detail-title'>{listTitle[props.title]}</h4>
       <p className='detail-date'>{timeAgo[props.title]}</p>
       <p className='detail-content'>{editorData[props.title]}</p>
-      <p>{props.tags}</p>
+     <div className='detail-tags-container'>{tags.map((tags, i) => (
+    <div className="detail-tag-item" style={{marginLeft: '8px'}}>
+     {'#'+tags[props.title]}
+    </div>
+  ))}
+  </div> 
       <div className='detail-btn-container'><button className='detail-update'>글수정</button>&nbsp;&nbsp;&nbsp;<button className='detail-delete' onClick={handleClick}>삭제</button></div>
- 
       </div>
   );
 }
