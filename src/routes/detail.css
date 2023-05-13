@@ -108,3 +108,13 @@ width: 800px;
   border-radius: 20px;
   cursor: pointer;
 }
+
+.detail-bookmark{
+  margin-top: 24px;
+  text-align: right;
+  font-size: 24px;
+  color: var(--hover);
+
+
+
+}

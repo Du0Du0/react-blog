@@ -4,6 +4,8 @@ import App from '../App.js';
 import './detail.css';
 import HorizonLine from '../HorizontalLine.js';
 import './write.js';
+import {faBookmark} from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 function Detail(props) {
   const { listTitle, likeBtn, setlistTitle, setlikeBtn, editorData, setEditorData, selectedTopic, setSelectedTopic, value, setValues} = props;
@@ -40,7 +42,8 @@ function Detail(props) {
 
   return (
     <div>
-  <HorizonLine text1={'프론트엔드 / '} text2={selectedTopic[props.title]} color={'rgb(188, 188, 188)'} />
+  <HorizonLine text1={'프론트엔드 / '} text2={selectedTopic[props.title]} color={'rgb(188, 188, 188)'} /><FontAwesomeIcon icon={faBookmark} className='detail-bookmark' onClick={ () => { }} /> 
+  <div ></div>
       <h4 className='detail-title'>{listTitle[props.title]}</h4>
       <p className='detail-date'>{timeAgo[props.title]}</p>
       <p className='detail-content'>{editorData[props.title]}</p>
